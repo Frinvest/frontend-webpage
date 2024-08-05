@@ -5,6 +5,7 @@ import {Text} from '../components/Text/Text'
 export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
+      {/* Logo */}
       <View style={styles.hero}>
         <Image
           source={require('../assets/images/logo.png')}
@@ -12,12 +13,14 @@ export default function HomeScreen() {
           resizeMode="contain"
         />
       </View>
+      {/* Information */}
       <View style={styles.content}>
         <View style={styles.header}>
-        <Text style={styles.titleText} font='generic' size='large' color="#FFFFFF">Welcome to TeAIcher</Text>
-        <Text style={styles.messageText} font='generic' size='medium' color="#FFFFFF">A personalized and fun way to learn</Text>
+          <Text style={styles.titleText} font='generic' size='large' color="#FFFFFF">Welcome to TeAIcher</Text>
+          <Text style={styles.messageText} font='generic' size='medium' color="#FFFFFF">A personalized and fun way to learn</Text>
         </View>
-          <View style={styles.buttonView}>
+        {/* Sign up Button */}
+        <View style={styles.buttonView}>
           <Button
               title="SIGN UP"
               buttonStyle={styles.button}
@@ -28,24 +31,23 @@ export default function HomeScreen() {
               }}
               titleStyle={{ fontWeight: 'bold' }}
             />
-          </View>
-  
-        
-
+        </View>
+        {/* Log in  */}
         <View style={styles.bottom}>
             <Text style = {styles.bottomText}  font='generic' size='medium'  color="#FFFFFF" >Already got an account?  
-            <View style={styles.login}>
-            <TouchableOpacity onPress={() => Linking.openURL('http://google.com')}>
-            <Text style={styles.loginText} font='generic' size='medium'  color="#FFFFFF" >
-                 Log In 
+              <View style={styles.login}>
+                <TouchableOpacity onPress={() => Linking.openURL('http://google.com')}>
+                  <Text style={styles.loginText} font='generic' size='medium'  color="#FFFFFF" >
+                      Log In 
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </Text>
-            </TouchableOpacity>
-          </View>
-           </Text>
     
         </View>
 
       </View>
+
     </SafeAreaView>
   );
 }
@@ -115,7 +117,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   button: {
-    fontFamily:"Avenir-Medium",
     backgroundColor: 'black',
     borderWidth: 2,
     borderColor: 'white',
