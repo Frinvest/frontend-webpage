@@ -1,10 +1,11 @@
-import { View,  StyleSheet, Image, Dimensions, } from 'react-native';
+import { View,  StyleSheet, Image, Dimensions,TouchableOpacity, Linking } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Button,Text} from '@rneui/themed';
-const {height} = Dimensions.get("window")
+import { Button} from '@rneui/themed';
+import {Text} from '../components/Text/Text'
 export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
+      {/* Logo */}
       <View style={styles.hero}>
         <Image
           source={require('../assets/images/logo.png')}
@@ -12,15 +13,14 @@ export default function HomeScreen() {
           resizeMode="contain"
         />
       </View>
+      {/* Information */}
       <View style={styles.content}>
         <View style={styles.header}>
-        <Text style={styles.title}>Welcome to TeAIcher
-          </Text>
-        <Text style={styles.message}>
-            A personalized and fun way to learn
-        </Text>
+          <Text style={styles.titleText} font='generic' size='large' color="#FFFFFF">Welcome to TeAIcher</Text>
+          <Text style={styles.messageText} font='generic' size='medium' color="#FFFFFF">A personalized and fun way to learn</Text>
         </View>
-          <View style={styles.buttonView}>
+        {/* Sign up Button */}
+        <View style={styles.buttonView}>
           <Button
               title="SIGN UP"
               buttonStyle={styles.button}
@@ -31,44 +31,51 @@ export default function HomeScreen() {
               }}
               titleStyle={{ fontWeight: 'bold' }}
             />
-          </View>
-  
-        
-
+        </View>
+        {/* Log in  */}
         <View style={styles.bottom}>
-            <Text style = {styles.bottomText}>Already got an account?  
-            <View style={styles.login}>
-            <Text style={styles.loginText} >
-                 Log In 
+            <Text style = {styles.bottomText}  font='generic' size='medium'  color="#FFFFFF" >Already got an account?  
+              <View style={styles.login}>
+                <TouchableOpacity onPress={() => Linking.openURL('http://google.com')}>
+                  <Text style={styles.loginText} font='generic' size='medium'  color="#FFFFFF" >
+                      Log In 
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </Text>
-          </View>
-           </Text>
     
         </View>
 
       </View>
+
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  // ALL TEXT STYLES
   bottomText:{
-    fontFamily: 'Avenir-Medium',
-    fontSize: 20,
-    color:"#FFFFFF",
     textAlign:"center",
     marginBottom:10,
   },
-  bottom:{
-    padding:25,
-  },
   loginText:{
-    fontFamily: 'Avenir-Medium',
-    fontSize: 20,
-    color:"#FFFFFF",
     textAlign:"center",
     marginBottom:10,
     textDecorationLine: 'underline',
+  },
+  titleText:{
+    textAlign:"center",
+    marginBottom:10,
+  }, 
+  messageText:{
+    paddingTop: 15,
+    textAlign:"center",
+    marginBottom:10,
+  },
+// -----------------------
+
+  bottom:{
+    padding:25,
   },
   login:{
     padding:5,
@@ -97,20 +104,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 300,
   },
-  title:{
-    fontFamily: 'Avenir-Medium',
-    fontSize: 35,
-    color:"#FFFFFF",
-    textAlign:"center",
-    marginBottom:10,
-  }, 
-  message:{
-    paddingTop: 15,
-    fontSize: 20,
-    color:"#FFFFFF",
-    textAlign:"center",
-    marginBottom:10,
-  },
 
    /** Button */
    buttonView: {
@@ -124,7 +117,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   button: {
-    fontFamily:"Avenir-Medium",
     backgroundColor: 'black',
     borderWidth: 2,
     borderColor: 'white',
