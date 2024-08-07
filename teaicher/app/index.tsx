@@ -40,7 +40,7 @@ export default function HomeScreen() {
   
                   <Link  href="/login"> 
                       <Text style={styles.loginText} font='generic' size='medium'  color="#FFFFFF" >
-                      Log In 
+                      Sign In 
                       </Text>
                   </Link>
    
@@ -48,6 +48,8 @@ export default function HomeScreen() {
             </Text>
     
         </View>
+
+        
 
       </View>
 
