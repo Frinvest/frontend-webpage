@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Nunito as FontSans } from "next/font/google"
+import { Rajdhani as FontSans } from "next/font/google"
 import "./globals.css";
-
+import { Toaster } from "@/components/ui/toaster"
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
+  weight: "400"
 })
 
 
@@ -20,7 +21,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={fontSans.className}>{children}</body>
+    <head />
+    <body className={fontSans.className}>
+      <main>{children}</main>
+      <Toaster />
+    </body>
     </html>
   );
 }

@@ -1,27 +1,32 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-
+import { useToast } from "@/components/ui/use-toast"
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { LoginType } from "@/types/loginTypes";
 import logIn from "@/utils/firebaseUtils";
+import { cn } from "@/lib/utils";
 const LoginForm = () => {
 	const [data, setData] = useState<LoginType>({
 		email: '',
 		password: '',
 	});
+    const { toast } = useToast()
+    const handleLogin = async (e: any) => {
+        e.preventDefault();
+        try {
+            let test = await logIn(data.email, data.password);
 
-  const handleLogin = async (e: any) => {
-    e.preventDefault();
-    try {
-        let test = await logIn(data.email, data.password);
-        console.log(test)
-
-    } catch (error: any) {
-        console.log(error.message);
-    }
+        } catch (error: any) {
+            await toast({
+                variant: "destructive" ,
+                title: "Error",
+                description: "Wrong password. Try again or click Forgot password to reset it.",
+            })
+            console.log(error.message);
+        }
 
   };
 
@@ -47,7 +52,9 @@ const LoginForm = () => {
                 name="email"
                 id="email"
                 autoComplete="off"
+                className="focus:ring-blue-500 focus:border-blue-500 valid:[&:not(:placeholder-shown)]:border-green-500 [&:not(:placeholder-shown):not(:focus):invalid~span]:block invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
                 placeholder="test@example.com"
+                pattern="[a-z0-9._+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
                 required
                 onChange={(e: any) => {
                     setData({
@@ -56,6 +63,9 @@ const LoginForm = () => {
                     });
                 }}
               />
+                <span className="mt-1 hidden text-sm text-red-400">
+                        Please enter a valid email address.{' '}
+                </span>
             </div>
             <div className="grid gap-2">
               <div className="flex items-center">
