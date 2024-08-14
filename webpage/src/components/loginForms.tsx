@@ -7,8 +7,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { LoginType } from "@/types/loginTypes";
 import logIn from "@/utils/firebaseUtils";
-import { cn } from "@/lib/utils";
+import { useRouter } from 'next/navigation'
+
 const LoginForm = () => {
+    const router = useRouter()
 	const [data, setData] = useState<LoginType>({
 		email: '',
 		password: '',
@@ -18,6 +20,8 @@ const LoginForm = () => {
         e.preventDefault();
         try {
             let test = await logIn(data.email, data.password);
+            console.log("hi",test)
+            router.push('/dashboard')
 
         } catch (error: any) {
             await toast({
